@@ -11,6 +11,12 @@ Question of these kind are tricky to answer as most (online) information availab
 - What is the (average) price development of MGT cards?
 - What is the color distribution over time?
 
+## How to make the project work?
+1. Create a [Google Cloud Platform project](https://console.cloud.google.com/cloud-resource-manager) 
+2. Configure Identity and Access Management (IAM) for the service account, giving it the following privileges: BigQuery Admin and Storage Object Admin
+3. Download the JSON credentials and save it to `~/.gc/<credentials>`
+4. Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk), let the [environment variable point to your GCP key](https://cloud.google.com/docs/authentication/application-default-credentials#GAC), and refresh the session token by logging in to GCP.
+5. 
 
 <center><a href="https://scryfall.com/"><img src="https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849"></a></center>
 
