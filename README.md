@@ -1,29 +1,56 @@
 ![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Magicthegathering-logo.svg)
 
 ## What is this about?
-In case you have never seen the logo display above, here a very quick intro: Magic: The Gathering (Magic or MGT) is the first collecteble card game of its kind, created in 1993. It can be played be two or more players. The rules differ by the exact played format but in general mostly players battle against each other with their card decks, trying to defeat the other players by casting spells, ar tefacts and creatures. 
+If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artefacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
 
-## What problem are we trying to solve?
-This project takes a deeper look at MGT and tries to answer some fundamental questions every player and collector might encounter at a certain point in her / his career, when trying to understand more about the game from a meta perspective. 
+## What questions are we trying to answer? 
+This project looks on MGT from a meta-perspective and dives into the following:
+- What is the color distribution?
+- What are the most expensive cards?
+- How many cards are released per month and year?
 
-Question of these kind are tricky to answer as most (online) information available are focused on individual cards or decks only. This project should support understanding of, but not limited to, the following:
-
-- What is the (average) price development of MGT cards?
+With a growing database, we would be able to further explore the following:
 - What is the color distribution over time?
+- What is the price development of cards?
 
-## How to make the project work?
+## What technologies are being used?
+- Cloud: [Google Cloud](https://cloud.google.com)
+- Infrastructure: [Terraform](https://www.terraform.io/)
+- Orchestration: [Prefect](https://www.prefect.io/)
+- Data lake: [Google Cloud Storage](https://cloud.google.com/storage)
+- Data transformation: [DBT](https://www.https://getdbt.com/) / [Spark](https://spark.apache.org/)
+- Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
+- Data visualization: [Google Looker Studio](https://cloud.google.com/looker), former Data Studio
+
+## How to make the it work?
 1. Create a [Google Cloud Platform project](https://console.cloud.google.com/cloud-resource-manager).
 2. Configure Identity and Access Management (IAM) for the service account, giving it the following privileges: BigQuery Admin and Storage Object Admin.
 3. Download the JSON credentials and save it to `~/.gc/<credentials>`.
-4. Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk), let the [environment variable point to your GCP key](https://cloud.google.com/docs/authentication/application-default-credentials#GAC), and refresh the session token by logging in to GCP via `gcloud auth application-default login`
+4. Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk):
+    * Let the [environment variable point to your GCP key](https://cloud.google.com/docs/authentication/application-default-credentials#GAC) via `export GOOGLE_APPLICATION_CREDENTIALS=<path_to_your_credentials>.json`
+    * Authenticate it via `gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS`
+    * Refresh the session token via `gcloud auth application-default login`
 5. Download the [Terraform](https://developer.hashicorp.com/terraform/downloads) executable and add it to your `~/bin/`-directory.
-6. To initiate, plan and apply the infrastructure specified in the following file - `magic-the-gathering/terraform/main.tf` - run the following Terraform commands: : 
+6. To initiate, plan and apply the infrastructure specified in the following file - `magic-the-gathering/terraform/main.tf` - run the following Terraform commands: 
     * `terraform init` 
     * `terraform plan -var="project=<your-gcp-project-id>"`
     * `terraform apply -var="project=<your-gcp-project-id>"`
 7. tbc.
 
-<center><a href="https://scryfall.com/"><img src="https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849"></a></center>
+<p align="center">
+<a href="https://scryfall.com/"><img src="https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849"></a>
+</p>
+
+<p align="center">
+<img src="https://gatherer.wizards.com/images/Redesign/Black_Mana.png">
+<img src="https://gatherer.wizards.com/images/Redesign/Red_Mana.png">
+<img src="https://gatherer.wizards.com/images/Redesign/Green_Mana.png">
+<img src="https://gatherer.wizards.com/images/Redesign/Blue_Mana.png">
+<img src="https://gatherer.wizards.com/images/Redesign/White_Mana.png">
+</p>
+
+
+<b>TL;DR</b>: This project is analyzing MGT card data. Follow [these](#How-to-make-the-it-work?) steps to set it up.
 
 ## To do
 - [x] Describe what MTG is
@@ -31,8 +58,8 @@ Question of these kind are tricky to answer as most (online) information availab
 - [x] Mention Scryfall, [Logo](https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/a/a2/Scryfall.jpg/revision/latest/scale-to-width-down/180?cb=20221220021533)
 - [x] Mention Magic: The Gathering [lotus](https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849) [logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fde.m.wikipedia.org%2Fwiki%2FDatei%3AMagicthegathering-logo.svg&psig=AOvVaw1ITUEgWPlwcDb6HN93f5dR&ust=1678264036225000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKiMx--yyf0CFQAAAAAdAAAAABAE)
 
-- [] Setup terraform
-- [] Cloud development
+- [x] Setup terraform
+- [x] Cloud development
 
 - [] Data ingestion orchestration with Prefect
 - [] Uploading data to GCS
@@ -48,7 +75,7 @@ Question of these kind are tricky to answer as most (online) information availab
 - [] Color distribution of all cards
 - [] amount of cards per color / overall over time
 
-- [] instructions on how to run the code
+- [x] instructions on how to run the code
 
 ## Extra mile to do
 - [] ML on price forecast?
