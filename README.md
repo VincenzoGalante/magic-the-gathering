@@ -1,4 +1,4 @@
-![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Magicthegathering-logo.svg)
+![](images/mtg-logo.png)
 
 ## What is this about?
 If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artefacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
@@ -38,15 +38,15 @@ With a growing database, we would be able to further explore the following:
 7. tbc.
 
 <p align="center">
-<a href="https://scryfall.com/"><img src="https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849"></a>
+<a href="https://scryfall.com/"><img src="images/lotus.png"></a>
 </p>
 
 <p align="center">
-<img src="https://gatherer.wizards.com/images/Redesign/Black_Mana.png">
-<img src="https://gatherer.wizards.com/images/Redesign/Red_Mana.png">
-<img src="https://gatherer.wizards.com/images/Redesign/Green_Mana.png">
-<img src="https://gatherer.wizards.com/images/Redesign/Blue_Mana.png">
-<img src="https://gatherer.wizards.com/images/Redesign/White_Mana.png">
+<img src="images/mana_black.png">
+<img src="images/mana_red.png">
+<img src="images/mana_green.png">
+<img src="images/mana_blue.png">
+<img src="images/mana_white.png">
 </p>
 
 
