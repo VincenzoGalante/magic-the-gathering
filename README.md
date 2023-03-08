@@ -1,10 +1,10 @@
 ![](images/mtg-logo.png)
 
 ## What is this about?
-If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artefacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
+If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
 
 ## What questions are we trying to answer? 
-This project looks on MGT from a meta-perspective and dives into the following:
+This project looks at MGT from a meta-perspective and dives into the following:
 - What is the color distribution?
 - What are the most expensive cards?
 - How many cards are released per month and year?
@@ -22,7 +22,7 @@ With a growing database, we would be able to further explore the following:
 - Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
 - Data visualization: [Google Looker Studio](https://cloud.google.com/looker), former Data Studio
 
-## How to make the it work?
+## How to make it work?
 1. Create a [Google Cloud Platform project](https://console.cloud.google.com/cloud-resource-manager).
 2. Configure Identity and Access Management (IAM) for the service account, giving it the following privileges: BigQuery Admin and Storage Object Admin.
 3. Download the JSON credentials and save it to `~/.gc/<credentials>`.
@@ -50,7 +50,7 @@ With a growing database, we would be able to further explore the following:
 </p>
 
 
-<b>TL;DR</b>: This project is analyzing MGT card data. Follow [these](#How-to-make-the-it-work?) steps to set it up.
+<b>TL;DR</b>: This project is analyzing MGT card data. Follow the steps mentioned under `How to make it work?` to set it up.
 
 # To do
 
@@ -62,7 +62,7 @@ With a growing database, we would be able to further explore the following:
 - [x] instructions on how to run the code
 - [x] Setup terraform
 - [x] Cloud development
-- [] Save [pictures](https://github.com/jupyter/notebook/issues/3278) to github repository
+- [x] Save [pictures](https://github.com/jupyter/notebook/issues/3278) to github repository
 
 
 ## Data ingestion
