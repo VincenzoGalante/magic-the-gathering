@@ -52,32 +52,44 @@ With a growing database, we would be able to further explore the following:
 
 <b>TL;DR</b>: This project is analyzing MGT card data. Follow [these](#How-to-make-the-it-work?) steps to set it up.
 
-## To do
+# To do
+
+## Setup
 - [x] Describe what MTG is
-- [X] Clear problem description and clear description of the solution
+- [x] Clear problem description and clear description of the solution
 - [x] Mention Scryfall, [Logo](https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/a/a2/Scryfall.jpg/revision/latest/scale-to-width-down/180?cb=20221220021533)
 - [x] Mention Magic: The Gathering [lotus](https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849) [logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fde.m.wikipedia.org%2Fwiki%2FDatei%3AMagicthegathering-logo.svg&psig=AOvVaw1ITUEgWPlwcDb6HN93f5dR&ust=1678264036225000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKiMx--yyf0CFQAAAAAdAAAAABAE)
-
+- [x] instructions on how to run the code
 - [x] Setup terraform
 - [x] Cloud development
+- [] Save [pictures](https://github.com/jupyter/notebook/issues/3278) to github repository
 
-- [] Data ingestion orchestration with Prefect
-- [] Uploading data to GCS
-- [] Pull data weekly
 
+## Data ingestion
+- [] Download data from API
+- [] Transform to parquet
+- [] upload to GCS
+- [] Orcehstration with Prefect
+- [] Weekly download
+
+## Lake to warehouse
 - [] From GCS to BQ
 - [] BigQuery: Partitioning and clustering 
 
+## Transformation
 - [] DBT or Spark for transforming data
 
+## Visaulization
 - [] DataStudio Dashboard
-- [] Price development of top 10 most expensive cards of color / deck choosen by user
-- [] Color distribution of all cards
-- [] amount of cards per color / overall over time
+- [] What is the color distribution?
+- [] What are the most expensive cards?
+- [] How many cards are released per month and year?
 
-- [x] instructions on how to run the code
+Prepare:
+- [] What is the color distribution over time?
+- [] What is the price development of cards?
 
-## Extra mile to do
+## Extra mile
 - [] ML on price forecast?
 - [] Tests
 - [] CI / CD pipeline
