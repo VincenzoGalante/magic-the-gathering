@@ -1,0 +1,7 @@
+requests==2.28.1
+pandas==1.4.4
+glom==23.1.1
+pathlib=1.0.1
+pyarrow==11.0.0
+prefect==2.8.4
+prefect-gcp[cloud_storage]==0.2.4
