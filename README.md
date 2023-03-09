@@ -5,9 +5,11 @@ If you have never seen the logo above, here a very quick intro: `Magic: The Gath
 
 ## What questions are we trying to answer? 
 This project looks at MGT from a meta-perspective and dives into the following:
+- How many cards are being released over time?
 - What is the color distribution?
+- What is the average amount of cards per set?
+- Who are the most common illustrators? 
 - What are the most expensive cards?
-- How many cards are released per month and year?
 
 With a growing database, we would be able to further explore the following:
 - What is the color distribution over time?
@@ -24,18 +26,28 @@ With a growing database, we would be able to further explore the following:
 
 ## How to make it work?
 1. Create a [Google Cloud Platform project](https://console.cloud.google.com/cloud-resource-manager).
-2. Configure Identity and Access Management (IAM) for the service account, giving it the following privileges: BigQuery Admin and Storage Object Admin.
-3. Download the JSON credentials and save it to `~/.gc/<credentials>`.
+2. Configure Identity and Access Management (IAM) for the service account, giving it the following privileges: BigQuery Admin, Storage Admin and Storage Object Admin.
+3. Download the JSON credentials and save it to `~/.gc/<credentials>`
 4. Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk):
-    * Let the [environment variable point to your GCP key](https://cloud.google.com/docs/authentication/application-default-credentials#GAC) via `export GOOGLE_APPLICATION_CREDENTIALS=<path_to_your_credentials>.json`
-    * Authenticate it via `gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS`
-    * Refresh the session token via `gcloud auth application-default login`
+5. Let the [environment variable point to your GCP key](https://cloud.google.com/docs/authentication/application-default-credentials#GAC), authenticate it and refresh the session token
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS=<path_to_your_credentials>.json
+gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+gcloud auth application-default login
+```
 5. Download the [Terraform](https://developer.hashicorp.com/terraform/downloads) executable and add it to your `~/bin/`-directory.
 6. To initiate, plan and apply the infrastructure specified in the following file - `magic-the-gathering/terraform/main.tf` - run the following Terraform commands: 
-    * `terraform init` 
-    * `terraform plan -var="project=<your-gcp-project-id>"`
-    * `terraform apply -var="project=<your-gcp-project-id>"`
-7. tbc.
+```bash
+terraform init
+terraform plan -var="project=<your-gcp-project-id>"
+terraform apply -var="project=<your-gcp-project-id>"
+```
+
+7. Install all requiered dependencies into your enviroment from your root
+```bash
+pip install -r requirements.txt
+```
+8. tbc.
 
 <p align="center">
 <a href="https://scryfall.com/"><img src="images/lotus.png"></a>
@@ -66,10 +78,10 @@ With a growing database, we would be able to further explore the following:
 
 
 ## Data ingestion
-- [] Download data from API
+- [x] Download data from API
 - [] Transform to parquet
-- [] upload to GCS
-- [] Orcehstration with Prefect
+- [x] upload to GCS
+- [x] Orcehstration with Prefect
 - [] Weekly download
 
 ## Lake to warehouse
