@@ -3,3 +3,6 @@ magic-the-gathering/terraform/.terraform
 magic-the-gathering/terraform/.terraform-version
 magic-the-gathering/terraform/.terraform.lock.hcl
 magic-the-gathering/terraform/terraform.tfstate.backup
+
+# large files
+**.parquet
