@@ -4,5 +4,9 @@ magic-the-gathering/terraform/.terraform-version
 magic-the-gathering/terraform/.terraform.lock.hcl
 magic-the-gathering/terraform/terraform.tfstate.backup
 
-# large files
+# large 
 **.parquet
+
+# jupyter notebook
+**.ipynb
+**.ipynb_checkpoints

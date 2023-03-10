@@ -85,7 +85,7 @@ pip install -r requirements.txt
 - [] Weekly download
 
 ## Lake to warehouse
-- [] From GCS to BQ
+- [x] From GCS to BQ
 - [] BigQuery: Partitioning and clustering 
 
 ## Transformation
