@@ -6,6 +6,7 @@ magic-the-gathering/terraform/terraform.tfstate.backup
 
 # large 
 **.parquet
+**.parquet.snappy
 
 # jupyter notebook
 **.ipynb
