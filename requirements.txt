@@ -5,3 +5,4 @@ pathlib=1.0.1
 pyarrow==11.0.0
 prefect==2.8.4
 prefect-gcp[cloud_storage]==0.2.4
+pandas-gbq==0.19.1

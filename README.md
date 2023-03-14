@@ -1,5 +1,7 @@
 ![](images/mtg-logo.png)
 
+<b>TL;DR</b>: This project is analyzing MGT card data. Follow the steps mentioned under `How to make it work?` to set it up.
+
 ## What is this about?
 If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
 
@@ -61,9 +63,6 @@ pip install -r requirements.txt
 <img src="images/mana_white.png">
 </p>
 
-
-<b>TL;DR</b>: This project is analyzing MGT card data. Follow the steps mentioned under `How to make it work?` to set it up.
-
 # To do
 
 ## Setup
@@ -79,23 +78,23 @@ pip install -r requirements.txt
 
 ## Data ingestion
 - [x] Download data from API
-- [] Transform to parquet
 - [x] upload to GCS
 - [x] Orcehstration with Prefect
-- [] Weekly download
+- [] Saving to parque directly on GCS
+- [] Schedule weekly
 
 ## Lake to warehouse
 - [x] From GCS to BQ
-- [] BigQuery: Partitioning and clustering 
 
 ## Transformation
-- [] DBT or Spark for transforming data
+- [] Partitioning and clustering in dbt
 
 ## Visaulization
 - [] DataStudio Dashboard
-- [] What is the color distribution?
+- [] How many cards are being released over time?
+- [] What is the average amount of cards per set?
+- [] Who are the most common illustrators? 
 - [] What are the most expensive cards?
-- [] How many cards are released per month and year?
 
 Prepare:
 - [] What is the color distribution over time?
