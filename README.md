@@ -48,14 +48,18 @@ pip install -r requirements.txt
 ```
 3. Setup your infrastructure
 - Download the [Terraform](https://developer.hashicorp.com/terraform/downloads) executable and add it to your `~/bin/`-directory
-- Review and adjust the variables mentioned in `magic-the-gathering/terraform/variables.tf`
+- Review and adjust the variables mentioned in `/terraform/variables.tf`
 - To initiate, plan and apply the infrastructure run the following Terraform commands: 
 ```bash
 terraform init
 terraform plan -var="project=<your-gcp-project-id>"
 terraform apply -var="project=<your-gcp-project-id>"
 ```
-4. 
+4. Setup your orchestration
+- Create the prefect blocks via UI or adjust the variables in `/prefect/prefect_blocks.py` and run the
+```bash
+python magic-the-gathering/prefect/prefect_blocks.py
+```
 
 <p align="center">
 <img src="images/mana_black.png">
