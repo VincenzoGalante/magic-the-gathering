@@ -26,6 +26,18 @@ With a growing database, we would be able to further explore the following:
 - Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
 - Data visualization: [Google Looker Studio](https://cloud.google.com/looker), former Data Studio
 
+## Which columns are present in the database and what is their meaning? 
+| Column | Description | 
+|--------|-------------|
+| id | A unique ID for this card in Scryfall’s database |
+| name | The name of this card |
+| released_at | The date this card was first released |
+| color_identity | This card’s color identity |
+| set_name | This card’s full set name |
+| artist | The name of the illustrator of this card face |
+| prices | Price information of this card in € |
+| data_update | Timestamp when the data was updated in the database |
+
 <p align="center">
 <a href="https://scryfall.com/"><img src="images/lotus.png"></a>
 </p>
