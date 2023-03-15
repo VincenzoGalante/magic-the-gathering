@@ -108,7 +108,7 @@ def write_to_bq(df: pd.DataFrame) -> None:
     gcp_credentials_block = GcpCredentials.load("magic-the-gathering")
 
     df.to_gbq(
-        destination_table="mtg_card_data.default_cards",
+        destination_table="mtg_card_data_raw.default_cards",
         project_id="dtc-mtg-final-project",
         credentials=gcp_credentials_block.get_credentials_from_service_account(),
         chunksize=10000,

@@ -42,9 +42,79 @@ resource "google_storage_bucket" "data-lake-bucket" {
 
 # DWH
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
-resource "google_bigquery_dataset" "dataset" {
-  dataset_id = "${var.datasets[count.index]}"
-  count = length(var.datasets)
+#resource "google_bigquery_dataset" "dataset" {
+#  dataset_id = "${var.datasets[count.index]}"
+#  count = length(var.datasets)
+#  project    = var.project
+#  location   = var.region
+#}
+
+resource "google_bigquery_dataset" "mtg_card_data_raw" {
+  dataset_id = var.bq_dataset
   project    = var.project
   location   = var.region
+}
+
+resource "google_bigquery_dataset" "mtg_card_data_dbt" {
+  dataset_id = var.dbt_dataset
+  project    = var.project
+  location   = var.region
+}
+
+resource "google_bigquery_table" "default_cards" {
+  dataset_id = google_bigquery_dataset.mtg_card_data_raw.dataset_id
+  table_id   = "default_cards"
+
+  schema = <<EOF
+  [
+    {
+      "name": "id",
+      "type" : "STRING",
+      "mode" : "NULLABLE",
+      "description": "The ID of the card in the database"
+    },
+    {
+      "name": "name",
+      "type" : "STRING",
+      "mode" : "NULLABLE",
+      "description": "The name of the card"
+    },
+    {
+      "name": "released_at",
+      "type" : "Timestamp",
+      "mode" : "NULLABLE",
+      "description": "The date the card was released"
+    },
+    {
+      "name": "color_identity",
+      "type" : "STRING",
+      "mode" : "NULLABLE",
+      "description": "The color identity of the card"
+    },
+    {
+      "name": "set_name",
+      "type" : "STRING",
+      "mode" : "NULLABLE",
+      "description": "The name of the set the card is from"
+    },
+    {
+      "name": "artist",
+      "type" : "STRING",
+      "mode" : "NULLABLE",
+      "description": "The artist of the card"
+    },
+    {
+      "name": "prices",
+      "type": "FLOAT",
+      "mode": "NULLABLE",
+      "description": "The price of the card in EUR"
+    },
+    {
+      "name": "data_update",
+      "type": "TIMESTAMP",
+      "mode": "NULLABLE",
+      "description": "The date the data was last updated"
+    }
+  ] 
+  EOF
 }

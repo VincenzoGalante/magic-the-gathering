@@ -29,7 +29,7 @@ With a growing database, we would be able to further explore the following:
 ## Which columns are present in the database and what is their meaning? 
 | Column | Description | 
 |--------|-------------|
-| id | A unique ID for this card in Scryfall’s database |
+| id | A non-unique ID for this card in Scryfall’s database. IDs can be repeated due to reprintings. |
 | name | The name of this card |
 | released_at | The date this card was first released |
 | color_identity | This card’s color identity |

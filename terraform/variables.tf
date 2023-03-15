@@ -17,8 +17,20 @@ variable "storage_class" {
   default = "STANDARD"
 }
 
-variable "datasets" {
-  description = "Datasets needed for this project."
-  type = list
-  default = ["mtg_card_data_raw","mtg_card_data_dbt"]
+#variable "datasets" {
+#  description = "Datasets needed for this project."
+#  type = list
+#  default = ["mtg_card_data_raw","mtg_card_data_dbt"]
+#}
+
+variable "bq_dataset" {
+  description = "BigQuery Dataset that raw data (from GCS) will be written to"
+  type = string
+  default = "mtg_card_data_raw"
+}
+
+variable "dbt_dataset" {
+  description = "DBT dataset that will feed into the visualization layer"
+  type = string
+  default = "mtg_card_data_dbt"
 }
