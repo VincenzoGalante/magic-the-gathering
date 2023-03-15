@@ -8,8 +8,6 @@ from prefect import task, flow
 from prefect_gcp import GcpCredentials
 from prefect_gcp.cloud_storage import GcsBucket
 
-gcp_cloud = GcsBucket.load("magic-the-gathering-bucket")
-
 
 @task(log_prints=True, name="Fetch Cards", retries=3)
 def fetch_cards(url: str) -> pd.DataFrame:
@@ -27,7 +25,9 @@ def fetch_cards(url: str) -> pd.DataFrame:
 
 
 @task(log_prints=True, name="Write to Google Cloud Storage in parquet-format")
-def write_to_gcs(df: pd.DataFrame, update: str, dataset: str) -> None:
+def write_to_gcs(
+    df: pd.DataFrame, update: str, dataset: str, gcp_cloud: object
+) -> None:
     """Writes the dataframe to a GCS bucket as a parquet file"""
     df = df.astype(str)
     gcp_cloud.upload_from_dataframe(
@@ -39,7 +39,7 @@ def write_to_gcs(df: pd.DataFrame, update: str, dataset: str) -> None:
 
 
 @task(log_prints=True, name="Get parquet from Google Cloud Storage")
-def get_df_from_gcs(update: str, dataset: str) -> None:
+def get_df_from_gcs(update: str, dataset: str, gcp_cloud: object) -> None:
     """Gets the parquet file from GCS and returns the path to the file"""
     parent_path = Path(__file__).parent.parent
     from_file_path = f"pq/{dataset}_{update}.parquet.snappy"
@@ -124,12 +124,14 @@ def write_to_bq(df: pd.DataFrame) -> None:
 def api_to_gcs_orchestration(dataset: str, first_time: bool = False) -> None:
     """Orchestrates the flow of the API to Google Cloud Storage Bucket pipeline"""
 
+    gcp_cloud = GcsBucket.load("magic-the-gathering-bucket")
     api = f"https://api.scryfall.com/bulk-data/{dataset}"
+
     api_df, update_ts = fetch_cards(api)
-    write_to_gcs(api_df, update_ts, dataset)
+    write_to_gcs(api_df, update_ts, dataset, gcp_cloud)
     print(f"Uploaded {len(api_df)} rows to GCS.")
 
-    gcs_df = get_df_from_gcs(update_ts, dataset)
+    gcs_df = get_df_from_gcs(update_ts, dataset, gcp_cloud)
     transformed_df = transform_df(gcs_df, update_ts)
 
     if first_time == True:
