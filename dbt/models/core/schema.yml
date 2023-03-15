@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+    - name: staging
+      database: dtc-mtg-final-project
+      schema: mtg_card_data
+
+      tables:
+        - name: default_cards
