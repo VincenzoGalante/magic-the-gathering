@@ -73,7 +73,6 @@ def transform_df(path: str, update_ts: str) -> pd.DataFrame:
     df["name"] = df["name"].astype("string")
     df["released_at"] = pd.to_datetime(df["released_at"])
 
-    df["colors"] = df["colors"].apply(concatenate)
     df["color_identity"] = df["color_identity"].apply(concatenate)
 
     df["set_name"] = df["set_name"].astype("string")
@@ -93,7 +92,6 @@ def transform_df(path: str, update_ts: str) -> pd.DataFrame:
             "id",
             "name",
             "released_at",
-            "colors",
             "color_identity",
             "set_name",
             "artist",
