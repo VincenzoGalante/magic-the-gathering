@@ -40,15 +40,6 @@ resource "google_storage_bucket" "data-lake-bucket" {
   force_destroy = true
 }
 
-# DWH
-# Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
-#resource "google_bigquery_dataset" "dataset" {
-#  dataset_id = "${var.datasets[count.index]}"
-#  count = length(var.datasets)
-#  project    = var.project
-#  location   = var.region
-#}
-
 resource "google_bigquery_dataset" "mtg_card_data_raw" {
   dataset_id = var.bq_dataset
   project    = var.project

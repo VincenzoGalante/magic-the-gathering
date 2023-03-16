@@ -59,8 +59,15 @@ gcloud auth application-default login
 pip install -r requirements.txt
 ```
 3. Setup your infrastructure
-- Download the [Terraform](https://developer.hashicorp.com/terraform/downloads) executable and add it to your `~/bin/`-directory
-- Review and adjust the variables mentioned in `/terraform/variables.tf`
+- Assuming you are using Linux AMD64 run the following commands to install Terraform. If you are using a different OS please choose the correct version [here](https://developer.hashicorp.com/terraform/downloads) and exchange the download link and zip file name below.
+
+```bash
+sudo apt-get install unzip
+cd ~/bin
+wget https://releases.hashicorp.com/terraform/1.4.1/terraform_1.4.1_linux_amd64.zip
+unzip terraform_1.4.1_linux_amd64.zip
+rm terraform_1.4.1_linux_amd64.zip
+```
 - To initiate, plan and apply the infrastructure run the following Terraform commands: 
 ```bash
 terraform init
