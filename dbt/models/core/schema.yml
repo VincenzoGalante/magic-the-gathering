@@ -3,7 +3,7 @@ version: 2
 sources:
     - name: staging
       database: dtc-mtg-final-project
-      schema: mtg_card_data
+      schema: mtg_card_data_raw
 
       tables:
         - name: default_cards

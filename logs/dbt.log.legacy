@@ -1,0 +1,59 @@
+2023-03-15 07:17:22.080625 (MainThread): Running with dbt=1.4.5
+2023-03-15 07:17:22.892635 (MainThread): running dbt with arguments Namespace(cls=<class 'dbt_rpc.task.server.RPCServerTask'>, debug=None, defer=None, exclude=None, fail_fast=None, host='0.0.0.0', log_cache_events=False, log_format=None, models=None, partial_parse=True, port=8580, printer_width=None, profile='user', profiles_dir='/usr/src/develop/.dbt', project_dir=None, record_timing_info=None, rpc_method=None, send_anonymous_usage_stats=None, single_threaded=False, state=None, static_parser=None, target=None, threads=None, use_colors=None, use_experimental_parser=None, vars='{}', version_check=None, warn_error=None, which='rpc', write_json=None)
+2023-03-15 07:17:22.903884 (MainThread): Tracking: tracking
+2023-03-15 07:17:22.932300 (MainThread): 07:17:22  Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20b9f14d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3534cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3534d00>]}
+2023-03-15 07:17:22.936701 (MainThread): Serving RPC server at 0.0.0.0:8580, pid=33
+2023-03-15 07:17:22.937022 (MainThread): Supported methods: ['build', 'cli_args', 'compile', 'compile_sql', 'deps', 'docs.generate', 'gc', 'get-manifest', 'kill', 'list', 'poll', 'ps', 'run', 'run-operation', 'run_sql', 'seed', 'snapshot', 'snapshot-freshness', 'source-freshness', 'status', 'test']
+2023-03-15 07:17:22.937409 (MainThread): Send requests to http://localhost:8580/jsonrpc
+2023-03-15 07:17:23.004802 (Thread-12): 07:17:23  checksum: 9f5971860ea7956c5d0d162f1c96671df61b5ad9db5c4152918680483cec5347, vars: {}, profile: user, target: None, version: 1.4.5
+2023-03-15 07:17:23.007066 (Thread-12): 07:17:23  Unable to do partial parsing because saved manifest not found. Starting full parse.
+2023-03-15 07:17:23.007332 (Thread-12): 07:17:23  Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '72d897b7-20e6-430c-bc7b-78a31ade8c53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a35342e0>]}
+2023-03-15 07:17:23.286488 (Thread-13): handling status request
+2023-03-15 07:17:23.307329 (Thread-13): 07:17:23  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '72d897b7-20e6-430c-bc7b-78a31ade8c53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3465910>]}
+2023-03-15 07:17:23.312959 (Thread-13): sending response (<Response 180 bytes [200 OK]>) to 10.0.162.52
+2023-03-15 07:17:23.681992 (Thread-12): 07:17:23  1699: static parser successfully parsed example/my_second_dbt_model.sql
+2023-03-15 07:17:23.694818 (Thread-12): 07:17:23  1699: static parser successfully parsed example/my_first_dbt_model.sql
+2023-03-15 07:17:23.782280 (Thread-12): 07:17:23  Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '72d897b7-20e6-430c-bc7b-78a31ade8c53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3120d30>]}
+2023-03-15 07:17:24.132502 (Thread-14): handling status request
+2023-03-15 07:17:24.132904 (Thread-14): 07:17:24  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '72d897b7-20e6-430c-bc7b-78a31ade8c53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a31200d0>]}
+2023-03-15 07:17:24.133372 (Thread-14): sending response (<Response 2388 bytes [200 OK]>) to 10.0.162.52
+2023-03-15 07:17:37.730510 (MainThread): 07:17:37  Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20b9f14d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3534cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3534af0>]}
+2023-03-15 07:17:37.730868 (MainThread): 07:17:37  Flushing usage events
+2023-03-15 07:17:37.749916 (MainThread): Runtime Error
+  no dbt_project.yml found at expected path /usr/src/develop/user-170099/environment-176460/repository-134742/dbt_project.yml
+2023-03-15 07:22:32.160181 (MainThread): Running with dbt=1.4.5
+2023-03-15 07:22:32.182667 (MainThread): running dbt with arguments Namespace(cls=<class 'dbt_rpc.task.server.RPCServerTask'>, debug=None, defer=None, exclude=None, fail_fast=None, host='0.0.0.0', log_cache_events=False, log_format=None, models=None, partial_parse=True, port=8580, printer_width=None, profile='user', profiles_dir='/usr/src/develop/.dbt', project_dir=None, record_timing_info=None, rpc_method=None, send_anonymous_usage_stats=None, single_threaded=False, state=None, static_parser=None, target=None, threads=None, use_colors=None, use_experimental_parser=None, vars='{}', version_check=None, warn_error=None, which='rpc', write_json=None)
+2023-03-15 07:22:32.187816 (MainThread): Tracking: tracking
+2023-03-15 07:22:32.188085 (MainThread): 07:22:32  Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a30a0eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3098340>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a30a8d90>]}
+2023-03-15 07:22:32.188313 (MainThread): Serving RPC server at 0.0.0.0:8580, pid=33
+2023-03-15 07:22:32.188518 (MainThread): Supported methods: ['build', 'cli_args', 'compile', 'compile_sql', 'deps', 'docs.generate', 'gc', 'get-manifest', 'kill', 'list', 'poll', 'ps', 'run', 'run-operation', 'run_sql', 'seed', 'snapshot', 'snapshot-freshness', 'source-freshness', 'status', 'test']
+2023-03-15 07:22:32.193519 (MainThread): Send requests to http://localhost:8580/jsonrpc
+2023-03-15 07:22:32.194144 (Thread-15): 07:22:32  checksum: 9f5971860ea7956c5d0d162f1c96671df61b5ad9db5c4152918680483cec5347, vars: {}, profile: user, target: None, version: 1.4.5
+2023-03-15 07:22:32.239789 (Thread-15): 07:22:32  Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+2023-03-15 07:22:32.240006 (Thread-15): 07:22:32  Partial parsing enabled, no changes found, skipping parsing
+2023-03-15 07:22:32.245517 (Thread-15): 07:22:32  Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '72d897b7-20e6-430c-bc7b-78a31ade8c53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f209e1beb50>]}
+2023-03-15 07:22:32.871370 (Thread-16): handling status request
+2023-03-15 07:22:32.871926 (Thread-16): 07:22:32  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '72d897b7-20e6-430c-bc7b-78a31ade8c53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20a3534a90>]}
+2023-03-15 07:22:32.872442 (Thread-16): sending response (<Response 1606 bytes [200 OK]>) to 10.0.162.52
+2023-03-15 07:22:42.976812 (MainThread): 07:22:42  Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20b9f14070>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f20ba225940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f209e248070>]}
+2023-03-15 07:22:42.977169 (MainThread): 07:22:42  Flushing usage events
+2023-03-15 07:22:43.002417 (MainThread): Runtime Error
+  no dbt_project.yml found at expected path /usr/src/develop/user-170099/environment-176460/repository-134742/dbt_project.yml
+2023-03-15 07:36:14.976620 (MainThread): Running with dbt=1.4.5
+2023-03-15 07:36:15.833138 (MainThread): running dbt with arguments Namespace(cls=<class 'dbt_rpc.task.server.RPCServerTask'>, debug=None, defer=None, exclude=None, fail_fast=None, host='0.0.0.0', log_cache_events=False, log_format=None, models=None, partial_parse=True, port=8580, printer_width=None, profile='user', profiles_dir='/usr/src/develop/.dbt', project_dir=None, record_timing_info=None, rpc_method=None, send_anonymous_usage_stats=None, single_threaded=False, state=None, static_parser=None, target=None, threads=None, use_colors=None, use_experimental_parser=None, vars='{}', version_check=None, warn_error=None, which='rpc', write_json=None)
+2023-03-15 07:36:15.837619 (MainThread): Tracking: tracking
+2023-03-15 07:36:15.850693 (MainThread): 07:36:15  Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbedb35cbe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbec497b130>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbec497b160>]}
+2023-03-15 07:36:15.851199 (MainThread): Serving RPC server at 0.0.0.0:8580, pid=33
+2023-03-15 07:36:15.851916 (MainThread): Supported methods: ['build', 'cli_args', 'compile', 'compile_sql', 'deps', 'docs.generate', 'gc', 'get-manifest', 'kill', 'list', 'poll', 'ps', 'run', 'run-operation', 'run_sql', 'seed', 'snapshot', 'snapshot-freshness', 'source-freshness', 'status', 'test']
+2023-03-15 07:36:15.852320 (MainThread): Send requests to http://localhost:8580/jsonrpc
+2023-03-15 07:36:15.944990 (Thread-12): 07:36:15  checksum: 9f5971860ea7956c5d0d162f1c96671df61b5ad9db5c4152918680483cec5347, vars: {}, profile: user, target: None, version: 1.4.5
+2023-03-15 07:36:16.002350 (Thread-12): 07:36:16  Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+2023-03-15 07:36:16.002555 (Thread-12): 07:36:16  Partial parsing enabled, no changes found, skipping parsing
+2023-03-15 07:36:16.009433 (Thread-12): 07:36:16  Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'e980c458-d1bb-4e1c-a0b9-9b485deaff4b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbec47d8eb0>]}
+2023-03-15 07:36:16.233257 (Thread-13): handling status request
+2023-03-15 07:36:16.233680 (Thread-13): 07:36:16  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': 'e980c458-d1bb-4e1c-a0b9-9b485deaff4b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbec4841dc0>]}
+2023-03-15 07:36:16.234250 (Thread-13): sending response (<Response 1606 bytes [200 OK]>) to 10.0.176.165
+2023-03-15 07:36:24.730342 (MainThread): 07:36:24  Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbedb35cbe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbe8bf99c10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbec497b100>]}
+2023-03-15 07:36:24.731472 (MainThread): 07:36:24  Flushing usage events
+2023-03-15 07:36:24.758461 (MainThread): Runtime Error
+  no dbt_project.yml found at expected path /usr/src/develop/user-170099/environment-176460/repository-134742/dbt_project.yml

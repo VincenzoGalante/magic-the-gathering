@@ -11,6 +11,6 @@
         when 'G' then 'Green'
         when 'R' then 'Red'
         when '' then 'Colorless'
-        when color_identity like ('%,%') then 'Mixed'
+        else 'Mixed'
     end
 {%- endmacro%}
