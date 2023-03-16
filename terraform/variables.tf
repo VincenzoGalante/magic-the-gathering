@@ -3,7 +3,7 @@ locals {
 }
 
 variable "project" {
-  description = "Your GCP project ID"
+  description = "Your GCP project ID" 
 }
 
 variable "region" {
@@ -16,12 +16,6 @@ variable "storage_class" {
   description = "Storage class type for your bucket. Check official docs for more info."
   default = "STANDARD"
 }
-
-#variable "datasets" {
-#  description = "Datasets needed for this project."
-#  type = list
-#  default = ["mtg_card_data_raw","mtg_card_data_dbt"]
-#}
 
 variable "bq_dataset" {
   description = "BigQuery Dataset that raw data (from GCS) will be written to"
