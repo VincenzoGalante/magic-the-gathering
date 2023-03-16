@@ -72,7 +72,7 @@ resource "google_bigquery_table" "default_cards" {
     },
     {
       "name": "released_at",
-      "type" : "Timestamp",
+      "type" : "TIMESTAMP",
       "mode" : "NULLABLE",
       "description": "The date the card was released"
     },

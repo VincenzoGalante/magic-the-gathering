@@ -15,11 +15,11 @@ def fetch_cards(url: str) -> pd.DataFrame:
     response = requests.get(url, timeout=5)
     if response.status_code == 200:
         json = response.json()["download_uri"]
-        update = response.json()["updated_at"]
-        update = update[0:10]
+        update_ts = response.json()["updated_at"]
+        update_ts = update_ts[0:10]
         df = pd.read_json(json).fillna("")
         print("Successfully fetched data from API.")
-        return df, update
+        return df, update_ts
     else:
         print(f"[ERROR] {response.status_code}")
 
@@ -63,6 +63,13 @@ def concatenate(string: str) -> str:
         return string
 
 
+def select_euro(string: str) -> str:
+    """Selects the euro price from the prices column"""
+    code = eval(string)
+    code = code["eur"]
+    return code
+
+
 @task(log_prints=True, name="Select columns and enforce data type")
 def transform_df(path: str, update_ts: str) -> pd.DataFrame:
     """Selects the columns we want to keep and enforces the correct data types"""
@@ -78,13 +85,13 @@ def transform_df(path: str, update_ts: str) -> pd.DataFrame:
     df["set_name"] = df["set_name"].astype("string")
     df["artist"] = df["artist"].astype("string")
 
-    euro_prices = df["prices"].apply(lambda row: glom(row, "eur", default=None))
+    euro_prices = df["prices"].apply(select_euro)
     df["prices"] = euro_prices.astype(float)
 
     year = int(update_ts[0:4])
     month = int(update_ts[5:7])
     day = int(update_ts[8:10])
-    date = dt.date(year, month, day)
+    date = dt.datetime(year, month, day)
     df["data_update"] = date
 
     df = df[
@@ -119,7 +126,7 @@ def write_to_bq(df: pd.DataFrame) -> None:
 
 
 @flow(log_prints=True, name="[Magic: The Gathering] API to Cloud Storage")
-def api_to_gcs_orchestration(dataset: str, first_time: bool = False) -> None:
+def api_to_gcs_orchestration(dataset: str, download_parquet: bool = False) -> None:
     """Orchestrates the flow of the API to Google Cloud Storage Bucket pipeline"""
 
     gcp_cloud = GcsBucket.load("magic-the-gathering-bucket")
@@ -132,11 +139,9 @@ def api_to_gcs_orchestration(dataset: str, first_time: bool = False) -> None:
     gcs_df = get_df_from_gcs(update_ts, dataset, gcp_cloud)
     transformed_df = transform_df(gcs_df, update_ts)
 
-    if first_time == True:
-        transformed_df.to_parquet("../pq/sample_for_bq.parquet")
-        print(
-            "Created sample parquet to be used in BigQuery table creation as a source."
-        )
+    if download_parquet == True:
+        transformed_df.to_parquet("magic-the-gathering/pq/sample_for_bq.parquet")
+        print(f"Downloaded {len(transformed_df)} rows and saved into a parquet.")
     else:
         write_to_bq(transformed_df)
         print(f"Uploaded {len(transformed_df)} rows to BigQuery.")
@@ -145,5 +150,5 @@ def api_to_gcs_orchestration(dataset: str, first_time: bool = False) -> None:
 if __name__ == "__main__":
     oracle_dataset = "oracle_cards"  # one entry in db per card, multiple printings of the same card are unified
     default_dataset = "default_cards"  # one entry in db per printed card
-    first_time = False  # if set to true, a sample parquet file will be created for BigQuery table creation
-    api_to_gcs_orchestration(default_dataset, first_time)
+    download_parquet = False  # if set to true, a sample parquet file will be downloaded to the local directory
+    api_to_gcs_orchestration(default_dataset, download_parquet)
