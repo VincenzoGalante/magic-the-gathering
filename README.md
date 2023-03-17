@@ -13,7 +13,7 @@ If you have never seen the logo above, here a very quick intro: `Magic: The Gath
 This project looks at MGT from a meta-perspective and dives into the following:
 1. How many cards are being released over time?
 2. What is the color distribution?
-3. What is the average amount of cards per set?
+3. Which set has the highest count of cards?
 4. Who are the most common artists? 
 5. What are the most expensive cards?
 
@@ -44,6 +44,12 @@ This project looks at MGT from a meta-perspective and dives into the following:
 - Here the dbt lineage graph <img src="images/dbt_lineage.png" width="400">
 - Partitioned on the `released_at` column - in favor of question 1 and 3 - assuming that in most cases, cards with the same release date are from the same set
 - Clustered on the `color_category` column - in favor of question 2 - assuming that within one set the number of colors is lower than the numbers of unique prices and artists
+
+## Dashboard example
+- The dashboard is visible until 17th of April, 2022, just follow [this](https://lookerstudio.google.com/reporting/ebdf68e1-27f7-435b-8add-a4018681f801) link
+<p align="center">
+<img src="images/looker_dashboard_example.png" width="600">
+</p>
 
 <p align="center">
 <img src="images/lotus.png">
@@ -134,14 +140,14 @@ With a growing database, we would be able to further explore the following:
 - [x] From GCS to BQ
 
 ## Transformation
-- [] Partitioning and clustering in dbt
+- [x] Partitioning and clustering in dbt
 
 ## Visaulization
-- [] DataStudio Dashboard
-- [] How many cards are being released over time?
-- [] What is the average amount of cards per set?
-- [] Who are the most common illustrators? 
-- [] What are the most expensive cards?
+- [x] DataStudio Dashboard
+- [x] How many cards are being released over time?
+- [x] What is the average amount of cards per set?
+- [x] Who are the most common illustrators? 
+- [x] What are the most expensive cards?
 
 Prepare:
 - [] What is the color distribution over time?
