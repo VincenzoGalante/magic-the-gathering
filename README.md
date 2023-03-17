@@ -36,8 +36,8 @@ This project looks at MGT from a meta-perspective and dives into the following:
 | price | Price information of this card in US Dollar |
 | data_update | Timestamp when the data was updated in the database |
 
-- Partitioned on the `released_at` column, in favor of question 1 and 3, assuming that in most cases, cards with the same release date are from the same set. 
-- Clustered on the `color_category` column, in favor of question 2, assuming that within one set, the number of colors is lower than the numbers of unique prices and artists.
+- Partitioned on the `released_at` column - in favor of question 1 and 3 - assuming that in most cases, cards with the same release date are from the same set
+- Clustered on the `color_category` column - in favor of question 2 - assuming that within one set the number of colors is lower than the numbers of unique prices and artists
 
 <p align="center">
 <a href="https://scryfall.com/"><img src="images/lotus.png"></a>
