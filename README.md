@@ -5,6 +5,10 @@
 ## What is this about?
 If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
 
+<p align="center">
+<img src="images/magic_cards.png" width="400">
+</p>
+
 ## What questions are we trying to answer? 
 This project looks at MGT from a meta-perspective and dives into the following:
 1. How many cards are being released over time?
@@ -42,7 +46,7 @@ This project looks at MGT from a meta-perspective and dives into the following:
 - Clustered on the `color_category` column - in favor of question 2 - assuming that within one set the number of colors is lower than the numbers of unique prices and artists
 
 <p align="center">
-<a href="https://scryfall.com/"><img src="images/lotus.png"></a>
+<img src="images/lotus.png">
 </p>
 
 ## How to make it work?
@@ -100,6 +104,10 @@ python magic-the-gathering/prefect/prefect_blocks.py
 With a growing database, we would be able to further explore the following:
 - What is the color distribution over time?
 - What is the price development of specific cards / colors / sets over time?
+
+<p align="center">
+<img src="images/black_wizard.png" height="300">
+</p>
 
 # To do
 
