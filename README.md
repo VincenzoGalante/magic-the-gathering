@@ -7,15 +7,11 @@ If you have never seen the logo above, here a very quick intro: `Magic: The Gath
 
 ## What questions are we trying to answer? 
 This project looks at MGT from a meta-perspective and dives into the following:
-- How many cards are being released over time?
-- What is the color distribution?
-- What is the average amount of cards per set?
-- Who are the most common illustrators? 
-- What are the most expensive cards?
-
-With a growing database, we would be able to further explore the following:
-- What is the color distribution over time?
-- What is the price development of cards?
+1. How many cards are being released over time?
+2. What is the color distribution?
+3. What is the average amount of cards per set?
+4. Who are the most common artists? 
+5. What are the most expensive cards?
 
 ## What technologies are being used?
 - Cloud: [Google Cloud](https://cloud.google.com)
@@ -26,7 +22,7 @@ With a growing database, we would be able to further explore the following:
 - Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
 - Data visualization: [Google Looker Studio](https://cloud.google.com/looker), former Data Studio
 
-## Which columns are present in the database and what is their meaning? 
+## What is the structure of the production table?
 | Column | Description | 
 |--------|-------------|
 | primary_key | Unique surrogate key from card_id and released_at data |
@@ -39,6 +35,9 @@ With a growing database, we would be able to further explore the following:
 | artist | The name of the illustrator of this card face |
 | price | Price information of this card in US Dollar |
 | data_update | Timestamp when the data was updated in the database |
+
+- Partitioned on the `released_at` column, in favor of question 1 and 3, assuming that in most cases, cards with the same release date are from the same set. 
+- Clustered on the `color_category` column, in favor of question 2, assuming that within one set, the number of colors is lower than the numbers of unique prices and artists.
 
 <p align="center">
 <a href="https://scryfall.com/"><img src="images/lotus.png"></a>
@@ -94,6 +93,11 @@ python magic-the-gathering/prefect/prefect_blocks.py
 <img src="images/mana_blue.png">
 <img src="images/mana_white.png">
 </p>
+
+## Potential next steps
+With a growing database, we would be able to further explore the following:
+- What is the color distribution over time?
+- What is the price development of specific cards / colors / sets over time?
 
 # To do
 
