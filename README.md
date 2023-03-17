@@ -22,20 +22,22 @@ With a growing database, we would be able to further explore the following:
 - Infrastructure: [Terraform](https://www.terraform.io/)
 - Orchestration: [Prefect](https://www.prefect.io/)
 - Data lake: [Google Cloud Storage](https://cloud.google.com/storage)
-- Data transformation: [DBT](https://www.https://getdbt.com/) / [Spark](https://spark.apache.org/)
+- Data transformation: [DBT](https://www.https://getdbt.com/)
 - Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
 - Data visualization: [Google Looker Studio](https://cloud.google.com/looker), former Data Studio
 
 ## Which columns are present in the database and what is their meaning? 
 | Column | Description | 
 |--------|-------------|
-| id | A non-unique ID for this card in Scryfall’s database. IDs can be repeated due to reprintings. |
+| primary_key | Unique surrogate key from card_id and released_at data |
+| card_id | Card ID in database, IDs can be repeated due to reprintings |
 | name | The name of this card |
 | released_at | The date this card was first released |
 | color_identity | This card’s color identity |
+| color_category | Based on the color_identity: Black, Blue, White, Green, Red, Colorless or Mixed |
 | set_name | This card’s full set name |
 | artist | The name of the illustrator of this card face |
-| prices | Price information of this card in € |
+| price | Price information of this card in US Dollar |
 | data_update | Timestamp when the data was updated in the database |
 
 <p align="center">
@@ -59,7 +61,7 @@ gcloud auth application-default login
 pip install -r requirements.txt
 ```
 3. Setup your infrastructure
-- Assuming you are using Linux AMD64 run the following commands to install Terraform. If you are using a different OS please choose the correct version [here](https://developer.hashicorp.com/terraform/downloads) and exchange the download link and zip file name below.
+- Assuming you are using Linux AMD64 run the following commands to install Terraform - if you are using a different OS please choose the correct version [here](https://developer.hashicorp.com/terraform/downloads) and exchange the download link and zip file name below
 
 ```bash
 sudo apt-get install unzip
@@ -70,15 +72,20 @@ rm terraform_1.4.1_linux_amd64.zip
 ```
 - To initiate, plan and apply the infrastructure run the following Terraform commands: 
 ```bash
+cd terraform/
 terraform init
 terraform plan -var="project=<your-gcp-project-id>"
 terraform apply -var="project=<your-gcp-project-id>"
 ```
 4. Setup your orchestration
-- Create the prefect blocks via UI or adjust the variables in `/prefect/prefect_blocks.py` and run the
+- If you do not have a prefect workspace, sign-up for the prefect cloud and create a workspace [here](https://app.prefect.cloud/auth/login)
+- Create the prefect blocks via UI or adjust the variables in `/prefect/prefect_blocks.py` and run
 ```bash
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
+5. Setup your tables for visualization
+- DBT part
+6. 
 
 <p align="center">
 <img src="images/mana_black.png">
