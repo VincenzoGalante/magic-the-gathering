@@ -59,7 +59,7 @@ resource "google_bigquery_table" "default_cards" {
   schema = <<EOF
   [
     {
-      "name": "id",
+      "name": "card_id",
       "type" : "STRING",
       "mode" : "NULLABLE",
       "description": "The ID of the card in the database"
@@ -95,10 +95,10 @@ resource "google_bigquery_table" "default_cards" {
       "description": "The artist of the card"
     },
     {
-      "name": "prices",
+      "name": "price",
       "type": "FLOAT",
       "mode": "NULLABLE",
-      "description": "The price of the card in EUR"
+      "description": "The price of the card in US Dollar"
     },
     {
       "name": "data_update",
