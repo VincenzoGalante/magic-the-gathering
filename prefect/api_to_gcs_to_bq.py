@@ -64,9 +64,9 @@ def concatenate(string: str) -> str:
 
 
 def select_euro(string: str) -> str:
-    """Selects the euro price from the prices column"""
+    """Selects the usd price from the prices column"""
     code = eval(string)
-    code = code["eur"]
+    code = code["usd"]
     return code
 
 
@@ -106,6 +106,9 @@ def transform_df(path: str, update_ts: str) -> pd.DataFrame:
             "data_update",
         ]
     ]
+
+    df.rename(columns={"id": "card_id", "prices": "price"}, inplace=True)
+
     print("Successfully selected columns and enforced data types.")
     return df
 
@@ -150,5 +153,5 @@ def api_to_gcs_orchestration(dataset: str, download_parquet: bool = False) -> No
 if __name__ == "__main__":
     oracle_dataset = "oracle_cards"  # one entry in db per card, multiple printings of the same card are unified
     default_dataset = "default_cards"  # one entry in db per printed card
-    download_parquet = False  # if set to true, a sample parquet file will be downloaded to the local directory
+    download_parquet = False  # if set to true, a sample parquet file will be downloaded to the local pq directory
     api_to_gcs_orchestration(default_dataset, download_parquet)

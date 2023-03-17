@@ -29,13 +29,15 @@ With a growing database, we would be able to further explore the following:
 ## Which columns are present in the database and what is their meaning? 
 | Column | Description | 
 |--------|-------------|
-| id | An ID for each card in Scryfall’s database, IDs can be repeated due to reprintings |
+| primary_key | Unique surrogate key from card_id and released_at data |
+| card_id | Card ID in database, IDs can be repeated due to reprintings |
 | name | The name of this card |
 | released_at | The date this card was first released |
 | color_identity | This card’s color identity |
+| color_category | Based on the color_identity: Black, Blue, White, Green, Red, Colorless or Mixed |
 | set_name | This card’s full set name |
 | artist | The name of the illustrator of this card face |
-| prices | Price information of this card in € |
+| price | Price information of this card in US Dollar |
 | data_update | Timestamp when the data was updated in the database |
 
 <p align="center">
@@ -82,7 +84,8 @@ terraform apply -var="project=<your-gcp-project-id>"
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
 5. Setup your tables for visualization
-- 
+- DBT part
+6. 
 
 <p align="center">
 <img src="images/mana_black.png">
