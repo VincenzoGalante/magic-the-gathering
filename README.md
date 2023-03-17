@@ -99,9 +99,14 @@ terraform apply -var="project=<your-gcp-project-id>"
 ```bash
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
+- To schedule the data ingestion job on a weekly basis - every Saturday at midnight - run the following
+```bash
+prefect deployment build prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration -n "mtg_api_to_bq" --cron "0 0 * * SAT" -q default --param dataset="default_cards" -a
+```
 5. Setup your tables for visualization
 - DBT part
-6. 
+6. Dashboard
+- Take the data and model it in Looker 
 
 <p align="center">
 <img src="images/mana_black.png">
@@ -131,7 +136,6 @@ With a growing database, we would be able to further explore the following:
 - [x] Setup terraform
 - [x] Cloud development
 - [x] Save [pictures](https://github.com/jupyter/notebook/issues/3278) to github repository
-- [] Readme on Prefect
 - [] Test on new account (Anto)
 
 ## Data ingestion
@@ -139,7 +143,9 @@ With a growing database, we would be able to further explore the following:
 - [x] upload to GCS
 - [x] Orcehstration with Prefect
 - [x] Saving to parque directly on GCS
-- [] Schedule weekly
+- [] Schedule weekly with prefect
+- [] Schedule weekly +1 day with DBT 
+- [] Add to readme
 
 ## Lake to warehouse
 - [x] From GCS to BQ
@@ -153,10 +159,6 @@ With a growing database, we would be able to further explore the following:
 - [x] What is the average amount of cards per set?
 - [x] Who are the most common illustrators? 
 - [x] What are the most expensive cards?
-
-Prepare:
-- [] What is the color distribution over time?
-- [] What is the price development of cards?
 
 ## Extra mile
 - [] ML on price forecast?
