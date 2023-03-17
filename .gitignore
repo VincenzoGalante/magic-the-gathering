@@ -11,3 +11,7 @@ magic-the-gathering/terraform/terraform.tfstate.backup
 # jupyter notebook
 **.ipynb
 **.ipynb_checkpoints
+
+# prefect
+magic-the-gathering/prefect/__pycache__/*
+magic-the-gathering/api_to_bq_orchestration-deployment.yaml

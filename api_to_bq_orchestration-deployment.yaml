@@ -1,0 +1,54 @@
+###
+### A complete description of a Prefect Deployment for flow '[Magic: The Gathering] API to Cloud Storage'
+###
+name: mtg_api_to_bq
+description: Orchestrates the flow of the API to Google Cloud Storage Bucket pipeline
+version: 348557811c1093743f34c67f7a13fc59
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: null
+tags: []
+parameters:
+  dataset: default_cards
+schedule:
+  cron: 0 0 * * SAT
+  timezone: null
+  day_or: true
+is_schedule_active: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: '[Magic: The Gathering] API to Cloud Storage'
+manifest_path: null
+storage: null
+path: /home/vincenzo/magic-the-gathering
+entrypoint: prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    dataset:
+      title: dataset
+      position: 0
+      type: string
+    download_parquet:
+      title: download_parquet
+      default: false
+      position: 1
+      type: boolean
+  required:
+  - dataset
+  definitions: null
+timestamp: '2023-03-17T15:37:28.155434+00:00'

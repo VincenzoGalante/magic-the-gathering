@@ -129,7 +129,7 @@ def write_to_bq(df: pd.DataFrame) -> None:
 
 
 @flow(log_prints=True, name="[Magic: The Gathering] API to Cloud Storage")
-def api_to_gcs_orchestration(dataset: str, download_parquet: bool = False) -> None:
+def api_to_bq_orchestration(dataset: str, download_parquet: bool = False) -> None:
     """Orchestrates the flow of the API to Google Cloud Storage Bucket pipeline"""
 
     gcp_cloud = GcsBucket.load("magic-the-gathering-bucket")
@@ -154,4 +154,4 @@ if __name__ == "__main__":
     oracle_dataset = "oracle_cards"  # one entry in db per card, multiple printings of the same card are unified
     default_dataset = "default_cards"  # one entry in db per printed card
     download_parquet = False  # if set to true, a sample parquet file will be downloaded to the local pq directory
-    api_to_gcs_orchestration(default_dataset, download_parquet)
+    api_to_bq_orchestration(default_dataset, download_parquet)
