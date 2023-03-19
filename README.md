@@ -104,7 +104,7 @@ prefect deployment build prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration -n 
 - DBT part
 
 6. Data deep dive
-- The data will be available in BigQuery at 'mtg_card_data_dbt.dbt_mtg_latest_data'
+- The data will be available in BigQuery at `mtg_card_data_dbt.dbt_mtg_latest_data
 - Query the data in-place or build a nice dashboard in Looker
 
 <p align="center">
