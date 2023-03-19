@@ -32,9 +32,6 @@ This project looks at MGT from a meta-perspective and dives into the following:
 <img src="images/full_wizard.png" height="400">
 </p>
 
-- The dashboard is visible until 17th of April 2023, via [this](https://lookerstudio.google.com/reporting/ebdf68e1-27f7-435b-8add-a4018681f801) link
-
-
 ## What is the structure of the production table?
 | Column | Description | 
 |--------|-------------|
