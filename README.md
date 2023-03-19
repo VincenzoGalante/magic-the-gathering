@@ -101,13 +101,14 @@ python magic-the-gathering/prefect/prefect_blocks.py
 ```
 - To schedule the data ingestion job on a weekly basis - every Saturday at midnight - run the following
 ```bash
-prefect deployment build prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration -n "mtg_api_to_bq" --cron "0 0 * * SAT" -q default --param dataset="default_cards" -a
+prefect deployment build prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration -n "scryfall-api-to-gcs-to-bq" --cron "0 0 * * SAT" -q default --param dataset="default_cards" -a
 ```
 5. Setup your tables for visualization
 - DBT part
 
-6. Dashboard
-- Take the data and model it in Looker 
+6. Data deep dive
+- The data will be available in BigQuery at 'mtg_card_data_dbt.dbt_mtg_latest_data'
+- Query the data in-place or build a nice dashboard in Looker
 
 <p align="center">
 <img src="images/mana_black.png">

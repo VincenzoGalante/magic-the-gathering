@@ -1,9 +1,9 @@
 ###
-### A complete description of a Prefect Deployment for flow '[Magic: The Gathering] API to Cloud Storage'
+### A complete description of a Prefect Deployment for flow '[Magic: The Gathering] API to BigQuery'
 ###
-name: mtg_api_to_bq
-description: Orchestrates the flow of the API to Google Cloud Storage Bucket pipeline
-version: 348557811c1093743f34c67f7a13fc59
+name: scryfall-api-to-gcs-to-bq
+description: Orchestrates the flow of the API to BigQuery via Google Cloud Storage
+version: 06d49084d2b41c2303416c83ccf210af
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 work_pool_name: null
@@ -30,7 +30,7 @@ infrastructure:
 ###
 ### DO NOT EDIT BELOW THIS LINE
 ###
-flow_name: '[Magic: The Gathering] API to Cloud Storage'
+flow_name: '[Magic: The Gathering] API to BigQuery'
 manifest_path: null
 storage: null
 path: /home/vincenzo/magic-the-gathering
@@ -51,4 +51,4 @@ parameter_openapi_schema:
   required:
   - dataset
   definitions: null
-timestamp: '2023-03-17T15:37:28.155434+00:00'
+timestamp: '2023-03-19T14:40:58.855988+00:00'
