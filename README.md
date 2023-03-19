@@ -105,6 +105,7 @@ prefect deployment build prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration -n 
 ```
 5. Setup your tables for visualization
 - DBT part
+
 6. Dashboard
 - Take the data and model it in Looker 
 
@@ -144,7 +145,7 @@ With a growing database, we would be able to further explore the following:
 - [x] Orcehstration with Prefect
 - [x] Saving to parque directly on GCS
 - [] Schedule weekly with prefect
-- [] Schedule weekly +1 day with DBT 
+- [] Schedule weekly +1 day with DBT, with Prefect?
 - [] Add to readme
 
 ## Lake to warehouse
@@ -161,6 +162,5 @@ With a growing database, we would be able to further explore the following:
 - [x] What are the most expensive cards?
 
 ## Extra mile
-- [] ML on price forecast?
 - [] Tests
 - [] CI / CD pipeline
