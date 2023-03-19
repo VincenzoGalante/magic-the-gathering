@@ -128,9 +128,9 @@ def write_to_bq(df: pd.DataFrame) -> None:
     return
 
 
-@flow(log_prints=True, name="[Magic: The Gathering] API to Cloud Storage")
+@flow(log_prints=True, name="[Magic: The Gathering] API to BigQuery")
 def api_to_bq_orchestration(dataset: str, download_parquet: bool = False) -> None:
-    """Orchestrates the flow of the API to Google Cloud Storage Bucket pipeline"""
+    """Orchestrates the flow of the API to BigQuery via Google Cloud Storage"""
 
     gcp_cloud = GcsBucket.load("magic-the-gathering-bucket")
     api = f"https://api.scryfall.com/bulk-data/{dataset}"
