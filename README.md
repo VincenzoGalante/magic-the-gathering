@@ -142,7 +142,7 @@ With a growing database, we would be able to further explore the following:
 - [x] upload to GCS
 - [x] Orcehstration with Prefect
 - [x] Saving to parque directly on GCS
-- [] Schedule weekly with prefect
+- [x] Schedule weekly with prefect
 - [] Schedule weekly +1 day with DBT, with Prefect?
 - [] Add to readme
 
@@ -160,5 +160,5 @@ With a growing database, we would be able to further explore the following:
 - [x] What are the most expensive cards?
 
 ## Extra mile
-- [] Tests
-- [] CI / CD pipeline
+- [x] Tests
+- [x] CI / CD pipeline
