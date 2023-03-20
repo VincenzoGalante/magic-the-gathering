@@ -29,8 +29,14 @@ select
     cast(price as integer) as price,
     cast(data_update as timestamp) as data_update
 from default_cards
+where data_update = (
+    select distinct data_update
+    from default_cards
+    order by data_update DESC
+    limit 1
+)
 
--- dbt build -select dbt_mtg_latest_data.sql --var 'is_test_run: false'
+-- dbt build --select dbt_mtg_latest_data.sql --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
 
   limit 100
