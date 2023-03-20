@@ -4,14 +4,14 @@ magic-the-gathering/terraform/.terraform-version
 magic-the-gathering/terraform/.terraform.lock.hcl
 magic-the-gathering/terraform/terraform.tfstate.backup
 
-# large 
-**.parquet
-**.parquet.snappy
+# prefect
+magic-the-gathering/prefect/__pycache__/*
+magic-the-gathering/api_to_bq_orchestration-deployment.yaml
 
 # jupyter notebook
 **.ipynb
 **.ipynb_checkpoints
 
-# prefect
-magic-the-gathering/prefect/__pycache__/*
-magic-the-gathering/api_to_bq_orchestration-deployment.yaml
+# large files
+**.parquet
+**.parquet.snappy

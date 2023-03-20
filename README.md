@@ -22,9 +22,9 @@ This project looks at MGT from a meta-perspective and dives into the following:
 - Infrastructure: [Terraform](https://www.terraform.io/)
 - Orchestration: [Prefect](https://www.prefect.io/)
 - Data lake: [Google Cloud Storage](https://cloud.google.com/storage)
-- Data transformation: [DBT](https://www.https://getdbt.com/)
+- Data transformation: [DBT](https://www.getdbt.com/)
 - Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
-- Data visualization: [Google Looker Studio](https://cloud.google.com/looker), former Data Studio
+- Data visualization: [Google Looker Studio](https://cloud.google.com/looker)
 
 ## Dashboard example
 <p align="left">
