@@ -96,13 +96,15 @@ terraform apply -var="project=<your-gcp-project-id>"
 ```bash
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
-- To schedule the data ingestion job on a weekly basis - every Saturday at midnight - run the following
+- To execute the flow, run the following commands in two different CL terminals:
 ```bash
-prefect deployment build prefect/api_to_gcs_to_bq.py:api_to_bq_orchestration -n "scryfall-api-to-gcs-to-bq" --cron "0 0 * * SAT" -q default --param dataset="default_cards" -a
+prefect agent start -q 'default'
+```
+```bash
+python prefect/api_to_gcs_to_bq.py
 ```
 5. Setup your tables for visualization
 - DBT part
-
 6. Data deep dive
 - The data will be available in BigQuery at `mtg_card_data_dbt.dbt_mtg_latest_data` 
 - Query the data in-place or build a nice dashboard in Looker
@@ -143,7 +145,7 @@ With a growing database, we would be able to further explore the following:
 - [x] Orcehstration with Prefect
 - [x] Saving to parque directly on GCS
 - [x] Schedule weekly with prefect
-- [] Schedule weekly +1 day with DBT, with Prefect?
+- [] Schedule dbt with prefect
 - [] Add to readme
 
 ## Lake to warehouse
