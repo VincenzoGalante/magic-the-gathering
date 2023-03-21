@@ -83,7 +83,7 @@ wget https://releases.hashicorp.com/terraform/1.4.1/terraform_1.4.1_linux_amd64.
 unzip terraform_1.4.1_linux_amd64.zip
 rm terraform_1.4.1_linux_amd64.zip
 ```
-- To initiate, plan and apply the infrastructure run the following Terraform commands
+- To initiate, plan and apply the infrastructure, adjust and run the following Terraform commands
 ```bash
 cd terraform/
 terraform init
@@ -96,28 +96,7 @@ terraform apply -var="project=<your-gcp-project-id>"
 ```bash
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
-- Create the `dbt/profiles.yml`...
-```bash
-cd dbt/
-touch profiles.yml
-```
-- ...adjust and then paste the following in it
-```bash
-magic_the_gathering:
-  target: dev
-  outputs:
-    dev:
-      type: bigquery
-      method: service-account
-      keyfile: # Enter the path to your Google Cloud credentials, created under step 1
-      project: dtc-mtg-final-project
-      dataset: mtg_card_data_dbt
-      threads: 1
-      timeout_seconds: 300
-      location: europe-west6
-      priority: interactive
-```
-
+- Adjust the keyfile location in `dbt/profiles.yml` to the path of your Google Cloud credentials JSON
 - To execute the flow, run the following commands in two different CL terminals
 ```bash
 prefect agent start -q 'default'

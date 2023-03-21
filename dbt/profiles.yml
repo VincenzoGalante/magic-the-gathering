@@ -1,0 +1,13 @@
+magic_the_gathering:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      keyfile: /home/vincenzo/.gc/dtc-mtg-final-project.json # Exchange with path to your Google Cloud credentials, created under step 1
+      project: dtc-mtg-final-project
+      dataset: mtg_card_data_dbt
+      threads: 1
+      timeout_seconds: 300
+      location: europe-west6
+      priority: interactive

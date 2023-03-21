@@ -1,15 +1,12 @@
 # terraform
-magic-the-gathering/terraform/.terraform
-magic-the-gathering/terraform/.terraform-version
-magic-the-gathering/terraform/.terraform.lock.hcl
-magic-the-gathering/terraform/terraform.tfstate.backup
+terraform/.terraform
+terraform/.terraform-version
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate.backup
 
 # prefect
-magic-the-gathering/prefect/__pycache__/*
-magic-the-gathering/api_to_bq_orchestration-deployment.yaml
-
-# dbt
-magic-the-gathering/dbt/profiles.yml
+prefect/__pycache__/*
+api_to_bq_orchestration-deployment.yaml
 
 # jupyter notebook
 **.ipynb

@@ -5,8 +5,8 @@ import datetime as dt
 from pathlib import Path
 from prefect import task, flow
 from prefect_gcp import GcpCredentials
-from prefect_dbt.cli import DbtCoreOperation
 from prefect_gcp.cloud_storage import GcsBucket
+from prefect_dbt.cli import DbtCoreOperation, DbtCliProfile
 
 
 @task(log_prints=True, name="Fetch Cards", retries=3)
@@ -132,10 +132,14 @@ def write_to_bq(df: pd.DataFrame) -> None:
 @task(log_prints=True, name="Runs dbt to transform the data and derive columns")
 def trigger_dbt_flow() -> object:
     """Triggers the dbt dependency and build commands"""
+
+    dbt_cli_profile = DbtCliProfile.load("mtg-dbt-cli-profile")
+
     with DbtCoreOperation(
         commands=["dbt deps", "dbt build --var 'is_test_run: false'"],
-        project_dir="../dbt/",
-        profiles_dir="../dbt/",
+        project_dir="~/magic-the-gathering/dbt/",
+        profiles_dir="~/magic-the-gathering/dbt/",
+        # dbt_cli_profile=dbt_cli_profile, # comment out if dbt asks for a dbt_cli_profile
     ) as dbt_operation:
         dbt_process = dbt_operation.trigger()
         dbt_process.wait_for_completion()
