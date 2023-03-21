@@ -2,10 +2,10 @@ import os
 import requests
 import pandas as pd
 import datetime as dt
-from glom import glom
 from pathlib import Path
 from prefect import task, flow
 from prefect_gcp import GcpCredentials
+from prefect_dbt.cli import DbtCoreOperation
 from prefect_gcp.cloud_storage import GcsBucket
 
 
@@ -63,7 +63,7 @@ def concatenate(string: str) -> str:
         return string
 
 
-def select_euro(string: str) -> str:
+def select_currency(string: str) -> str:
     """Selects the usd price from the prices column"""
     try:
         code = eval(string)
@@ -85,7 +85,7 @@ def transform_df(path: str, update_ts: str) -> pd.DataFrame:
     df["color_identity"] = df["color_identity"].apply(concatenate)
     df["set_name"] = df["set_name"].astype("string")
     df["artist"] = df["artist"].astype("string")
-    euro_prices = df["prices"].apply(select_euro)
+    euro_prices = df["prices"].apply(select_currency)
     df["prices"] = euro_prices.astype(float)
 
     year = int(update_ts[0:4])
@@ -113,6 +113,7 @@ def transform_df(path: str, update_ts: str) -> pd.DataFrame:
     return df
 
 
+@task(log_prints=True, name="Write to BigQuery")
 def write_to_bq(df: pd.DataFrame) -> None:
     """Writes the dataframe to a BigQuery table"""
     gcp_credentials_block = GcpCredentials.load("magic-the-gathering")
@@ -128,8 +129,24 @@ def write_to_bq(df: pd.DataFrame) -> None:
     return
 
 
+@task(log_prints=True, name="Runs dbt to transform the data and derive columns")
+def trigger_dbt_flow() -> object:
+    """Triggers the dbt dependency and build commands"""
+    with DbtCoreOperation(
+        commands=["dbt deps", "dbt build --var 'is_test_run: false'"],
+        project_dir="../dbt/",
+        profiles_dir="../dbt/",
+    ) as dbt_operation:
+        dbt_process = dbt_operation.trigger()
+        dbt_process.wait_for_completion()
+        result = dbt_process.fetch_result()
+    return result
+
+
 @flow(log_prints=True, name="[Magic: The Gathering] API to BigQuery")
-def api_to_bq_orchestration(dataset: str, download_parquet: bool = False) -> None:
+def api_to_bq_orchestration(
+    dataset: str, download_parquet: bool = False, update_prod_table: bool = True
+) -> None:
     """Orchestrates the flow of the API to BigQuery via Google Cloud Storage"""
 
     gcp_cloud = GcsBucket.load("magic-the-gathering-bucket")
@@ -149,6 +166,9 @@ def api_to_bq_orchestration(dataset: str, download_parquet: bool = False) -> Non
         else:
             write_to_bq(transformed_df)
             print(f"Uploaded {len(transformed_df)} rows to BigQuery.")
+            if update_prod_table == True:
+                trigger_dbt_flow()
+                print("Successfully updated the production table.")
     except FileNotFoundError:
         print("[ERROR] Parquet file for transformation not found in GCS.")
     except (SyntaxError, NameError):
@@ -159,4 +179,5 @@ if __name__ == "__main__":
     oracle_dataset = "oracle_cards"  # one entry in db per card, multiple printings of the same card are unified
     default_dataset = "default_cards"  # one entry in db per printed card
     download_parquet = False  # if set to true, a sample parquet file will be downloaded to the local pq directory
-    api_to_bq_orchestration(default_dataset, download_parquet)
+    update_prod_table = True  # if set to true, the production table will be updated
+    api_to_bq_orchestration(default_dataset, download_parquet, update_prod_table)

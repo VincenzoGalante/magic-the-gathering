@@ -18,7 +18,7 @@ with default_cards as (
 )
 
 select
-    {{ dbt_utils.surrogate_key(['card_id', 'released_at', 'data_update']) }} as primary_key,
+    {{ dbt_utils.generate_surrogate_key(['card_id', 'released_at', 'data_update']) }} as primary_key,
     cast(card_id as string) as card_id,
     cast(name as string) as name,
     cast(released_at as timestamp) as released_at,
@@ -29,6 +29,12 @@ select
     cast(price as integer) as price,
     cast(data_update as timestamp) as data_update
 from default_cards
+where data_update = (
+    select distinct data_update
+    from default_cards
+    order by data_update DESC
+    limit 1
+)
 
 -- dbt build -select dbt_mtg_latest_data.sql --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
