@@ -18,7 +18,7 @@ with default_cards as (
 )
 
 select
-    {{ dbt_utils.surrogate_key(['card_id', 'released_at', 'data_update']) }} as primary_key,
+    {{ dbt_utils.generate_surrogate_key(['card_id', 'released_at', 'data_update']) }} as primary_key,
     cast(card_id as string) as card_id,
     cast(name as string) as name,
     cast(released_at as timestamp) as released_at,

@@ -3,13 +3,15 @@
 <b>TL;DR</b>: This project is analyzing MGT card data. Follow the steps mentioned under `How to make it work?` to set it up.
 
 ## What is this about?
-If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played be two or more players. The exact rules differ a bit by the exact format but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
+If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played by two or more players. The exact rules differ a bit by the format played but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
 
 <p align="center">
 <img src="images/magic_cards.png" width="400">
 </p>
 
-## What questions are we trying to answer? 
+With this project I aim to built an end-to-end orchestrated data pipeline. I am calling the [Scryfall API](https://scryfall.com/) to get a complete export of the latest card information, and save the data to my Google Cloud Storage. Afterwards, I filter the data on the needed columns, enforce a datatype and push it to BigQuery. In there, I use DBT to derive new columns and make sure that only the most up-to-date dataset is used for visualization in the dashboard.
+
+## What questions am I trying to answer? 
 This project looks at MGT from a meta-perspective and dives into the following:
 1. How many cards are being released over time?
 2. What is the color distribution?
@@ -51,8 +53,6 @@ This project looks at MGT from a meta-perspective and dives into the following:
 - Partitioned on the `released_at` column - in favor of question 1 and 3 - assuming that in most cases, cards with the same release date are from the same set
 - Clustered on the `color_category` column - in favor of question 2 - assuming that within one set the number of colors is lower than the numbers of unique prices and artists
 
-
-
 <p align="center">
 <img src="images/lotus.png">
 </p>
@@ -61,7 +61,7 @@ This project looks at MGT from a meta-perspective and dives into the following:
 1. Setup your Google Cloud environment
 - Create a [Google Cloud Platform project](https://console.cloud.google.com/cloud-resource-manager)
 - Configure Identity and Access Management (IAM) for the service account, giving it the following privileges: BigQuery Admin, Storage Admin and Storage Object Admin
-- Download the JSON credentials and save it to `~/.gc/<credentials>`
+- Download the JSON credentials and save it, e.g. to `~/.gc/<credentials>`
 - Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk)
 - Let the [environment variable point to your GCP key](https://cloud.google.com/docs/authentication/application-default-credentials#GAC), authenticate it and refresh the session token
 ```bash
@@ -74,7 +74,7 @@ gcloud auth application-default login
 pip install -r requirements.txt
 ```
 3. Setup your infrastructure
-- Assuming you are using Linux AMD64 run the following commands to install Terraform - if you are using a different OS please choose the correct version [here](https://developer.hashicorp.com/terraform/downloads) and exchange the download link and zip file name below
+- Assuming you are using Linux AMD64 run the following commands to install Terraform - if you are using a different OS please choose the correct version [here](https://developer.hashicorp.com/terraform/downloads) and exchange the download link and zip file name
 
 ```bash
 sudo apt-get install unzip
@@ -83,7 +83,7 @@ wget https://releases.hashicorp.com/terraform/1.4.1/terraform_1.4.1_linux_amd64.
 unzip terraform_1.4.1_linux_amd64.zip
 rm terraform_1.4.1_linux_amd64.zip
 ```
-- To initiate, plan and apply the infrastructure run the following Terraform commands: 
+- To initiate, plan and apply the infrastructure run the following Terraform commands
 ```bash
 cd terraform/
 terraform init
@@ -92,22 +92,42 @@ terraform apply -var="project=<your-gcp-project-id>"
 ```
 4. Setup your orchestration
 - If you do not have a prefect workspace, sign-up for the prefect cloud and create a workspace [here](https://app.prefect.cloud/auth/login)
-- Create the prefect blocks via UI or adjust the variables in `/prefect/prefect_blocks.py` and run
+- Create the [prefect blocks](https://docs.prefect.io/concepts/blocks/) via the cloud UI or adjust the variables in `/prefect/prefect_blocks.py` and run
 ```bash
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
-- To execute the flow, run the following commands in two different CL terminals:
+- Create the `dbt/profiles.yml`...
+```bash
+cd dbt/
+touch profiles.yml
+```
+- ...adjust and then paste the following in it
+```bash
+magic_the_gathering:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      keyfile: # Enter the path to your Google Cloud credentials, created under step 1
+      project: dtc-mtg-final-project
+      dataset: mtg_card_data_dbt
+      threads: 1
+      timeout_seconds: 300
+      location: europe-west6
+      priority: interactive
+```
+
+- To execute the flow, run the following commands in two different CL terminals
 ```bash
 prefect agent start -q 'default'
 ```
 ```bash
 python prefect/api_to_gcs_to_bq.py
 ```
-5. Setup your tables for visualization
-- DBT part
-6. Data deep dive
+5. Data deep dive
 - The data will be available in BigQuery at `mtg_card_data_dbt.dbt_mtg_latest_data` 
-- Query the data in-place or build a nice dashboard in Looker
+- Query the data in-place or build a dashboard
 
 <p align="center">
 <img src="images/mana_black.png">
@@ -118,7 +138,7 @@ python prefect/api_to_gcs_to_bq.py
 </p>
 
 ## Potential next steps
-With a growing database, we would be able to further explore the following:
+With a growing database, I would be able to further explore the following:
 - What is the color distribution over time?
 - What is the price development of specific cards / colors / sets over time?
 
@@ -145,7 +165,8 @@ With a growing database, we would be able to further explore the following:
 - [x] Orcehstration with Prefect
 - [x] Saving to parque directly on GCS
 - [x] Schedule weekly with prefect
-- [] Schedule dbt with prefect
+- [x] Schedule dbt with prefect
+- [] Put agent on cloud run
 - [] Add to readme
 
 ## Lake to warehouse

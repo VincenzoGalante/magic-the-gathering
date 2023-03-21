@@ -9,10 +9,9 @@ from prefect_gcp.cloud_storage import GcsBucket
 your_GCS_bucket_name = ""  # (1) insert your GCS bucket name
 GCS_credentials_block_name = "magic-the-gathering"
 
-
 credentials_block = GcpCredentials(
-    service_account_info={}
-)  # (2) enter your credentials info here
+    service_account_info={}  # (2) enter your credentials info here
+)
 
 credentials_block.save(f"{GCS_credentials_block_name}", overwrite=True)
 
