@@ -8,24 +8,24 @@ from prefect_dbt.cli import BigQueryTargetConfigs, DbtCliProfile, DbtCoreOperati
 # IMPORTANT - do not store credentials in a publicly available repository!
 
 your_GCS_bucket_name = ""  # (1) insert your GCS bucket name
-GCS_credentials_block_name = "magic-the-gathering"
+gcs_credentials_block_name = "magic-the-gathering"
 
 credentials_block = GcpCredentials(
     service_account_info={}  # (2) enter your credentials info here
 )
 
-credentials_block.save(f"{GCS_credentials_block_name}", overwrite=True)
+credentials_block.save(f"{gcs_credentials_block_name}", overwrite=True)
 
 
 bucket_block = GcsBucket(
-    gcp_credentials=GcpCredentials.load(f"{GCS_credentials_block_name}"),
+    gcp_credentials=GcpCredentials.load(f"{gcs_credentials_block_name}"),
     bucket=f"{your_GCS_bucket_name}",
 )
 
-bucket_block.save(f"{GCS_credentials_block_name}-bucket", overwrite=True)
+bucket_block.save(f"{gcs_credentials_block_name}-bucket", overwrite=True)
 
 
-credentials = GcpCredentials.load(GCS_credentials_block_name)
+credentials = GcpCredentials.load(gcs_credentials_block_name)
 target_configs = BigQueryTargetConfigs(
     schema="mtg_card_data_dbt",
     credentials=credentials,
