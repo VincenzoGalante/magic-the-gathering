@@ -1,18 +1,18 @@
 ![](images/mtg-logo.png)
 
-<b>TL;DR</b>: This project is analyzing MGT card data. Follow the steps mentioned under `How to make it work?` to set it up.
+<b>TL;DR</b>: This project is analyzing MTG card data. Follow the steps mentioned under `How to make it work?` to set it up.
 
 ## What is this about?
-If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MGT) is the first collectible card game of its kind, created in 1993. It can be played by two or more players. The exact rules differ a bit by the format played but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
+If you have never seen the logo above, here a very quick intro: `Magic: The Gathering` (Magic or MTG) is the first collectible card game of its kind, created in 1993. It can be played by two or more players. The exact rules differ a bit by the format played but in general: players battle against each other with their card decks, trying to defeat the other players by casting spells, artifacts and creatures. Curious? [Learn how to play...](https://magic.wizards.com/en/intro)
 
 <p align="center">
 <img src="images/magic_cards.png" width="400">
 </p>
 
-With this project I aim to built an end-to-end orchestrated data pipeline. I am calling the [Scryfall API](https://scryfall.com/) to get a complete export of the latest card information, and save the data to my Google Cloud Storage. Afterwards, I filter the data on the needed columns, enforce a datatype and push it to BigQuery. In there, I use DBT to derive new columns and make sure that only the most up-to-date dataset is used for visualization in the dashboard.
+With this project I aim to built an end-to-end orchestrated data pipeline. I am calling the [Scryfall API](https://scryfall.com/) to get a complete export of the latest card information available, and save the data to my Google Cloud Storage. Afterwards, I filter the data on the needed columns, enforce a data type and push it to BigQuery. In there, I use DBT to derive new columns and make sure that only the most up-to-date dataset is used for visualization in the dashboard.
 
 ## What questions am I trying to answer? 
-This project looks at MGT from a meta-perspective and dives into the following:
+As this project looks at MTG from a meta-perspective we are diving into the following:
 1. How many cards are being released over time?
 2. What is the color distribution?
 3. Which set has the highest count of cards?
@@ -37,7 +37,7 @@ This project looks at MGT from a meta-perspective and dives into the following:
 ## What is the structure of the production table?
 | Column | Description | 
 |--------|-------------|
-| primary_key | Unique surrogate key from card_id and released_at data |
+| primary_key | Unique surrogate key from card_id and released_at data points |
 | card_id | Card ID in database, IDs can be repeated due to reprintings |
 | name | The name of this card |
 | released_at | The date this card was first released |
