@@ -96,7 +96,7 @@ terraform apply -var="project=<your-gcp-project-id>"
 ```bash
 python magic-the-gathering/prefect/prefect_blocks.py
 ```
-- Adjust the keyfile location in `dbt/profiles.yml` to the path of your Google Cloud credentials JSON
+- Adjust the keyfile location at `dbt/profiles.yml` to the path of your Google Cloud credentials JSON
 - To execute the flow, run the following commands in two different CL terminals
 ```bash
 prefect agent start -q 'default'
@@ -124,43 +124,3 @@ With a growing database, I would be able to further explore the following:
 <p align="center">
 <img src="images/black_wizard.png" height="300">
 </p>
-
-# To do
-
-## Setup
-- [x] Describe what MTG is
-- [x] Clear problem description and clear description of the solution
-- [x] Mention Scryfall, [Logo](https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/a/a2/Scryfall.jpg/revision/latest/scale-to-width-down/180?cb=20221220021533)
-- [x] Mention Magic: The Gathering [lotus](https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20210621093849) [logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fde.m.wikipedia.org%2Fwiki%2FDatei%3AMagicthegathering-logo.svg&psig=AOvVaw1ITUEgWPlwcDb6HN93f5dR&ust=1678264036225000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKiMx--yyf0CFQAAAAAdAAAAABAE)
-- [x] instructions on how to run the code
-- [x] Setup terraform
-- [x] Cloud development
-- [x] Save [pictures](https://github.com/jupyter/notebook/issues/3278) to github repository
-- [] Test on new account (Anto)
-
-## Data ingestion
-- [x] Download data from API
-- [x] upload to GCS
-- [x] Orcehstration with Prefect
-- [x] Saving to parque directly on GCS
-- [x] Schedule weekly with prefect
-- [x] Schedule dbt with prefect
-- [] Put agent on cloud run
-- [] Add to readme
-
-## Lake to warehouse
-- [x] From GCS to BQ
-
-## Transformation
-- [x] Partitioning and clustering in dbt
-
-## Visaulization
-- [x] DataStudio Dashboard
-- [x] How many cards are being released over time?
-- [x] What is the average amount of cards per set?
-- [x] Who are the most common illustrators? 
-- [x] What are the most expensive cards?
-
-## Extra mile
-- [x] Tests
-- [x] CI / CD pipeline
