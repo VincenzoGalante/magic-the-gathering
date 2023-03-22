@@ -48,7 +48,6 @@ As this project looks at MTG from a meta-perspective we are diving into the foll
 | price | Price information of this card in US Dollar |
 | data_update | Timestamp when the data was updated in the database |
 
-- The table used for visualization is `dbt_mtg_latest_data` 
 - Here the dbt lineage graph <img src="images/dbt_lineage.png" width="400">
 - Partitioned on the `released_at` column - in favor of question 1 and 3 - assuming that in most cases, cards with the same release date are from the same set
 - Clustered on the `color_category` column - in favor of question 2 - assuming that within one set the number of colors is lower than the numbers of unique prices and artists
