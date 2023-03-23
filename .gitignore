@@ -3,6 +3,7 @@ terraform/.terraform
 terraform/.terraform-version
 terraform/.terraform.lock.hcl
 terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
 
 # prefect
 prefect/__pycache__/*
