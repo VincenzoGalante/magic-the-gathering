@@ -30,7 +30,7 @@ As this project looks at MTG from a meta-perspective we are diving into the foll
 
 ## Dashboard example
 <p align="left">
-<img src="images/looker_dashboard_example.png" width="600">
+<img src="images/looker_dashboard_example.gif" width="600">
 <img src="images/full_wizard.png" height="400">
 </p>
 
