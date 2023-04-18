@@ -29,6 +29,8 @@ As this project looks at MTG from a meta-perspective we are diving into the foll
 - Data visualization: [Google Looker Studio](https://cloud.google.com/looker)
 
 ## Dashboard example
+[Click here](https://lookerstudio.google.com/u/0/reporting/ebdf68e1-27f7-435b-8add-a4018681f801/page/BkBJD) to see the Looker dashboard.
+
 <p align="left">
 <img src="images/looker_dashboard_example.gif" width="600">
 <img src="images/full_wizard.png" height="400">
