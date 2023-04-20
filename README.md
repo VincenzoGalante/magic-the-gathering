@@ -20,13 +20,13 @@ As this project looks at MTG from a meta-perspective we are diving into the foll
 5. What are the most expensive cards?
 
 ## What technologies are being used?
-- Cloud: [Google Cloud](https://cloud.google.com)
-- Infrastructure: [Terraform](https://www.terraform.io/)
-- Orchestration: [Prefect](https://www.prefect.io/)
-- Data lake: [Google Cloud Storage](https://cloud.google.com/storage)
-- Data transformation: [DBT](https://www.getdbt.com/)
-- Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
-- Data visualization: [Google Looker Studio](https://cloud.google.com/looker)
+- Cloud: `Google Cloud`
+- Infrastructure: `Terraform`
+- Orchestration: `Prefect`
+- Data lake: `Google Cloud Storage`
+- Data transformation: `DBT`
+- Data warehouse: `BigQuery`
+- Data visualization: `Google Looker Studio`
 
 ## Dashboard example
 [Click here](https://lookerstudio.google.com/u/0/reporting/ebdf68e1-27f7-435b-8add-a4018681f801/page/BkBJD) to see my Looker dashboard.
