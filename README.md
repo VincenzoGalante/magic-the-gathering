@@ -29,7 +29,7 @@ As this project looks at MTG from a meta-perspective we are diving into the foll
 - Data visualization: `Google Looker Studio`
 
 ## Dashboard example
-[Click here](https://www.youtube.com/watch?v=YeFcrxYGMHc) to see my Looker dashboard.
+[Click here](https://www.youtube.com/watch?v=YeFcrxYGMHc) to see an introdcution video to my Looker dashboard.
 
 <p align="left">
 <img src="images/looker_dashboard_example.gif" width="600">
